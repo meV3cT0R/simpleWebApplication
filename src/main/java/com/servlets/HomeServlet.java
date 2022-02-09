@@ -8,6 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.service.UserService;
+import com.service.UserServiceImpl;
+import java.util.List;
+
+
 /**
  * Servlet implementation class HomeServlet
  */
@@ -29,8 +34,10 @@ public class HomeServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		if(session.getAttribute("activeUser") == null) {
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}else {
+			UserService userService = new UserServiceImpl();
+			request.setAttribute("users", userService.getAllUser());		
 			request.getRequestDispatcher("home.jsp").forward(request, response);
 		}
 	}

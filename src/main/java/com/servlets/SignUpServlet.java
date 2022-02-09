@@ -37,6 +37,9 @@ public class SignUpServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getSession().getAttribute("activeUsers") != null)
+			request.getRequestDispatcher("home.jsp").forward(request,response);
+		
 		String firstName = request.getParameter("firstName");
 		String lastName = request.getParameter("lastName");
 		
@@ -51,7 +54,7 @@ public class SignUpServlet extends HttpServlet {
 		
 		UserService us = new UserServiceImpl();
 		if(us.register(user)) {
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}else {
 			request.setAttribute("errorMessage", "Something went wrong");
 			request.getRequestDispatcher("signup.jsp").forward(request, response);

@@ -39,13 +39,16 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userName = request.getParameter("userName");
 		String password = request.getParameter("password");
+		HttpSession session = request.getSession();
 		
 		UserService us = new UserServiceImpl();
+		
+		
 		if(us.login(userName, password)) {
-			HttpSession session = request.getSession();
+			
 			session.setAttribute("activeUser", userName);
 			
-			request.getRequestDispatcher("home.jsp").forward(request, response);
+			response.sendRedirect("home");
 		}else {
 			request.setAttribute("errorMessage", "Username/password incorrect");
 			request.getRequestDispatcher("index.jsp").forward(request, response);

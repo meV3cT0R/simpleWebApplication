@@ -50,13 +50,15 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public List<User> getAllUser() {
 		String query = "SELECT * FROM users";
-		List<User> users = new ArrayList<User>();
+		
 		Statement stm;
 		try {
+			List<User> users = new ArrayList<User>();
 			stm = DB.getDBConnection().createStatement();
 			ResultSet rs = stm.executeQuery(query);
-			User user = new User();
+			User user;
 			while(rs.next()) {
+				user = new User();
 				user.setFirstName(rs.getString("firstName"));
 				user.setLastName(rs.getString("lastName"));
 				user.setUserName(rs.getString("userName"));

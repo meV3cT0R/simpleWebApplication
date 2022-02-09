@@ -30,6 +30,7 @@
 			<div class="container mt-4">
 				<div class="row justify-content-center">
 					<div class="col-md-6">
+					<form action="singup" method="post">
 						<div class="mb-3">
 							<label for="firstName" class="form-label">First Name</label>
 							<input type="text" class="form-control" id="firstname" name="firstName"/>
@@ -56,6 +57,7 @@
 						<div class="mb-3">
 							<button type="submit" class="btn btn-outline-success"> Sign Up</button>
 						</div>
+						</form>
 					</div>
 				</div>
 			</div>

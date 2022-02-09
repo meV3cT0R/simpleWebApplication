@@ -1,3 +1,5 @@
+<%@ page import="com.model.User" %>
+<%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
  pageEncoding="ISO-8859-1"%>
     
@@ -18,7 +20,7 @@
 					</a>
 					<ul class="navbar-nav">
 						<li class="nav-item">
-							<a class="nav-link" href="./index.jsp"> log in</a>
+							<a class="nav-link" href="#"> log in</a>
 						</li>
 						
 						<li class="nav-item">
@@ -35,7 +37,37 @@
 			</div>
 			
 			<div class="container mt-4">
-				Hello ${activeUser }
+				<h1> Hello ${activeUser } </h1>
+				
+				<table class="table table-primary">
+					<thead>	
+						<tr>
+							<th> First Name </th>
+							<th> Last Name </th>
+							<th> Username </th>
+							<th> password </th>
+						</tr>
+					</thead>
+					
+					
+					<tbody>
+					<%
+					
+						List<User> users = (List<User>) request.getAttribute("users");
+						for(User user : users) {
+					%>	
+						<tr>
+							<td> <%= user.getFirstName() %></td>
+							<td> <%= user.getLastName() %></td>
+							<td> <%= user.getUserName() %></td>
+							<td> <%= user.getPassword() %></td>
+							
+						</tr>
+						<%
+						}
+						%>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</body>
